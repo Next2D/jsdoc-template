@@ -29,37 +29,51 @@ var canStyleAsNamespace = function(item) {
                             .getElementsByClassName("parent");
 
                         const regexp = new RegExp(value, "i");
+
+                        // reset
+                        for (let idx = 0; idx < items.length; ++idx) {
+                            const item = items[idx];
+                            item.classList.remove("match", "no-match");
+
+                            let parent = items[idx].parentNode;
+                            parent.classList.remove("match", "no-match");
+
+                             parent
+                                .parentNode
+                                .classList.remove("match", "no-match");
+                        }
+
                         for (let idx = 0; idx < items.length; ++idx) {
 
                             const item = items[idx];
+
+                            let parent = item.parentNode;
                             if (!item.dataset.name || !regexp.test(item.dataset.name)) {
 
-                                item
-                                    .parentNode
-                                    .parentNode
-                                    .classList.remove("match");
+                                if (!parent.classList.contains("match")) {
+                                    parent.classList.add("no-match");
+                                }
 
-                                item
-                                    .parentNode
-                                    .parentNode
-                                    .classList.add("no-match");
+                                parent = parent.parentNode;
+                                if (!parent.classList.contains("match")) {
+                                    parent.classList.add("no-match");
+                                }
+
+                                item.classList.add("no-match");
 
                             } else {
 
-                                item
-                                    .parentNode
-                                    .parentNode
-                                    .classList.remove("no-match");
+                                parent.classList.remove("no-match");
+                                parent.classList.add("match");
 
-                                item
-                                    .parentNode
-                                    .parentNode
-                                    .classList.add("match");
+                                parent = parent.parentNode;
+                                parent.classList.remove("no-match");
+                                parent.classList.add("match");
+
+                                item.classList.add("match");
 
                             }
                         }
-
-                        element.scrollTop(0);
                     }
                 });
         })();

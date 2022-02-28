@@ -35,14 +35,9 @@
     display: none;
 }
 
-#docs .searching ul
+#docs .searching .itemMembers
 {
     display: block;
-}
-
-#docs .no-match
-{
-    display: none;
 }
 
 #docs .match
@@ -324,4 +319,9 @@
 #docs .class-description
 {
     padding: 10px 0 10px 0;
+}
+
+#docs .searching .no-match
+{
+    display: none;
 }
