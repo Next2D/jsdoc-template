@@ -6,6 +6,64 @@ var canStyleAsNamespace = function(item) {
 ?>
 <div class="search">
     <input id="search" type="text" class="form-control input-md" placeholder="Search...">
+    <script type="text/javascript">
+        (() =>
+        {
+            document
+                .getElementById("search")
+                .addEventListener("keyup", (event) =>
+                {
+                    const value = event.currentTarget.value.trim();
+
+                    document
+                        .getElementById("sub-navbar")
+                        .classList.remove("searching");
+
+                    if (value) {
+
+                        const element = document.getElementById("sub-navbar");
+
+                        element.classList.add("searching");
+
+                        const items = document
+                            .getElementsByClassName("parent");
+
+                        const regexp = new RegExp(value, "i");
+                        for (let idx = 0; idx < items.length; ++idx) {
+
+                            const item = items[idx];
+                            if (!item.dataset.name || !regexp.test(item.dataset.name)) {
+
+                                item
+                                    .parentNode
+                                    .parentNode
+                                    .classList.remove("match");
+
+                                item
+                                    .parentNode
+                                    .parentNode
+                                    .classList.add("no-match");
+
+                            } else {
+
+                                item
+                                    .parentNode
+                                    .parentNode
+                                    .classList.remove("no-match");
+
+                                item
+                                    .parentNode
+                                    .parentNode
+                                    .classList.add("match");
+
+                            }
+                        }
+
+                        element.scrollTop(0);
+                    }
+                });
+        })();
+    </script>
 </div>
 <nav id="sub-navbar" class="sub-navbar">
     <ul class="list-unstyled">
