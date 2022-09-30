@@ -1,7 +1,7 @@
 {
   "name": "@next2d/jsdoc-template",
   "description": "Next2D JSDoc template",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Toshiyuki Ienaga<ienaga@tvon.jp>",
   "homepage": "https://next2d.app",
   "bugs": "https://github.com/Next2D/jsdoc-template/issues/new",
